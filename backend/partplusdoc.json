@@ -32,7 +32,7 @@
     "/booking": {
       "get": {
         "tags": [
-          "Reservas"
+          "Bookings"
         ],
         "summary": "Get Bookings",
         "description": "Proceso para obtener el listado de reservas",
