@@ -127,7 +127,7 @@
         }
       }
     },
-    "/clients/:id": {
+    "/clients/{id}": {
       "get": {
         "tags": [
           "Clientes"
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/booking/:id": {
+    "/booking/{id}": {
       "get": {
         "tags": [
           "Bookings"
