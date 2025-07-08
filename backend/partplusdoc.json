@@ -1,0 +1,499 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Part Plus API",
+    "description": "Esta es la API de Part Plus",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/ricaldon/PartPlus/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/booking": {
+      "get": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Get Bookings",
+        "description": "Proceso para obtener el listado de reservas",
+        "operationId": "get-bookings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InventoryItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Post Bookings",
+        "description": "Proceso para agregar una reservacion a la tabla.",
+        "operationId": "post-bookings",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/booking_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "item created"
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/clients": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Get Clients",
+        "description": "Proceso para obtener el listado de clientes.",
+        "operationId": "get-clients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Post Clients",
+        "description": "Proceso para poder subir un cliente a la tabla.",
+        "operationId": "post-clients",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clients_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/clients/:id": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Get Clients By Id",
+        "description": "Proceso para obtener un dato de clientes por su ID.",
+        "operationId": "get-clients-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Put Clients",
+        "description": "Proceso para actualizar los datos de un cliente.",
+        "operationId": "put-clients-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clients_id_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Delete Clients",
+        "description": "Proceso para eliminar un cliente de la tabla.",
+        "operationId": "delete-clients-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/booking/:id": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get Bookings By Id",
+        "description": "Proceso para obtener una resevacion por su ID.",
+        "operationId": "get-booking-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Put Bookings",
+        "description": "Proceso para actualizar una reservación de la tabla.",
+        "operationId": "put-booking-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/booking_id_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Delete Bookings",
+        "description": "Proceso para eliminar una reservación de la tabla.",
+        "operationId": "delete-booking-:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ObjectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InventoryItem": {
+        "required": [
+          "id",
+          "manufacturer",
+          "name",
+          "releaseDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name": {
+            "type": "string",
+            "example": "Widget Adapter"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/Manufacturer"
+          }
+        }
+      },
+      "Manufacturer": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ACME Corporation"
+          },
+          "homePage": {
+            "type": "string",
+            "format": "url",
+            "example": "https://www.acme-corp.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "408-867-5309"
+          }
+        }
+      },
+      "booking_body": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3urv8lta5b4xc"
+            }
+          },
+          "vehicle": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "tdfu0cv0dk14n"
+            }
+          },
+          "service": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1f1nop1e8p5un"
+            }
+          },
+          "status": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "oz4zej87x25c9"
+            }
+          }
+        }
+      },
+      "clients_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "rqxl71p31qcl5"
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ejk5dhrfqeoxf"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ttegd6jkxl0gn"
+            }
+          },
+          "phone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "21m1aupxvaik7"
+            }
+          },
+          "age": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "3hlgcirzgdj1g"
+            }
+          }
+        }
+      },
+      "clients_id_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "k5qamhklyqdif"
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "fnght94s64c64"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "etgrpry651474"
+            }
+          },
+          "phone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jdokx2d1jgrvz"
+            }
+          },
+          "age": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "hxj41fb0tp21c"
+            }
+          }
+        }
+      },
+      "booking_id_body": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "enxnalynkhm7x"
+            }
+          },
+          "vehicle": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ey63gqgu7p31v"
+            }
+          },
+          "service": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "halxvpzzhpjrj"
+            }
+          },
+          "status": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ydvffk6r02lce"
+            }
+          }
+        }
+      }
+    }
+  }
+}
